@@ -11,7 +11,7 @@ class SDUPortalAuthenticationBackend:
         try to find user in SDU portal database and if that user exists, then to create in SBC database
         :param username: Username or maybe email of user
         :param password: password of user
-        :return: user from SDU portal database
+        :return: user from SBC db or SDU portal db
         """
         try:
             #At first try to find user in SBC database
