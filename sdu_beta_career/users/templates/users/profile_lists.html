@@ -1,30 +1,94 @@
 {% extends "base.html" %}
 {% load static %}
+{% block style %}
+<style>
+  {# Body style #}
+  body
+  {
+    background: #fcfcfc;
+  }
+  {# Profile card style #}
+  .row
+  {
+    display: block;
+    width: 90%;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom:30px;
+    border: none;
+    padding: 30px;
+    border-radius: 4px;
+    background-color: white;
+  }
+  .box-shadow
+  {
+    box-shadow: 0 2px 5px rgba(0,0,0,.15);
+  }
+  .btn-default
+  {
+    float: right;
+  }
+  {# card text #}
+  .media-body{
+    max-width: 200px;
+    max-height: 200px;
+    padding: 20px;
+    text-align: left;
+  }
+  .media-body a {
+    color: #1072a9 !important;
+  }
+  .media-image-box{
+
+  }
+  img.media-image{
+    width: 200px;
+    height: 200px;
+  }
+  {# Site Bar Style #}
+  .chiller-theme .sidebar-wrapper{
+    background: #2c3e50;
+    color: white!important;
+  }
+  .sidebar-submenu{
+    color: white!important;
+    background: #2c3e50!important;
+  }
+  .sidebar-submenu a{
+    color: #1072a9 !important;
+  }
+  span {
+      color: white;
+  }
+</style>
+{% endblock %}
 {% block active_profile %} active {% endblock %}
 {% block main %}
   <main class="page-content">
     <div class="container-fluid">
-      <div class="row block">
-        {% for profile in profiles %}
-          <div class="col-3 flex-column p-3">
-            <div class="media">
-              <div class="media-left align-self-center">
-                <img class="rounded" width="128" height="128" src="{% static "images/profile.jpg" %}">
-              </div>
-              <div class="media-body ml-3">
-                <h4>{{ profile.user.username }}</h4>
-                <p>{{ profile.linked_in }}</p>
-                <p>GPA {{ profile.gpa }}</p>
-              <a href="{% url 'users:profile_detail' pk=profile.pk %}" class="btn btn-default">See Profile</a>
-              </div>
+      {% for profile in profiles %}
+        <div class="row block box-shadow">
+          <div class="media">
+            <div class="media-image-box media-left align-self-center">
+              <img class="media-image rounded" src="{% static "images/profile.jpg" %}">
+            </div>
+            <div class="media-body">
+              <h4>{{ profile.user.name}}</h4>
+              <h4>{{ profile.user.username }}</h4>
+              <a href = {{ profile.linked_in }}>Linkedin</a>
+              <p>GPA {{ profile.gpa }}</p>
+            <a href="{% url 'users:profile_detail' pk=profile.pk %}" class="">See Profile</a>
             </div>
           </div>
-        {% endfor %}
+        </div>
+      {% endfor %}
 
-      </div>
       <section class="row-section">
         <div class="container-fluid">
+
         </div>
       </section>
+    </div>
   </main>
 {% endblock %}
