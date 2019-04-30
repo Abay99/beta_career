@@ -94,7 +94,7 @@ MIGRATION_MODULES = {
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'sdu_beta_career.auth_backends.SDUPortalAuthenticationBackend',
+    'sdu_beta_career.auth_backends.SBCAuthenticationBackend',
     # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
