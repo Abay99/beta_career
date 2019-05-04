@@ -1,3 +1,5 @@
+from typing import Optional
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.backends import ModelBackend
@@ -8,7 +10,7 @@ UserModel = get_user_model()
 
 class SBCAuthenticationBackend(ModelBackend):
 
-    def authenticate(self, username: str=None, password: str=None, **kwargs) -> 'Optional[User]':
+    def authenticate(self, username: Optional[str]=None, password: Optional[str]=None, **kwargs) -> Optional[User]:
         """
         At first try to find and authenticate user in SBC database, and if that user doesn't exist, then
         try to find user in SDU portal database and if that user exists, then to create in SBC database
@@ -31,13 +33,10 @@ class SBCAuthenticationBackend(ModelBackend):
             return user
 
     @staticmethod
-    def get_portal_user(username: str=None, password: str=None) -> 'Optional[User]':
+    def get_portal_user(username: Optional[str]=None, password: Optional[str]=None) -> Optional[User]:
         if username == username and password == password:
             user = User.objects.create_user(username=username,
                                             password=password,
                                             first_name='TestFirstName',
                                             last_name='TestLastName')
-            user.save()
             return user
-        else:
-            return None
